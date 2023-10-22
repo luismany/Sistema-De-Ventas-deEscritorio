@@ -15,10 +15,15 @@ namespace CapaDatos
         {
             List<Usuario> lista = new List<Usuario>();
 
-            string query = "select IdUsuario,Documento,NombreCompleto,Correo,Clave,Estado from Usuario";
+            StringBuilder query = new StringBuilder();
+            query.AppendLine("select u.IdUsuario,u.Documento,u.NombreCompleto,u.Correo,u.Clave,r.IdRol,r.Descripcion,u.Estado from Usuario u");
+            query.AppendLine("join Rol r on r.IdRol = u.IdRol");
+
+            //select u.IdUsuario,u.Documento,u.NombreCompleto,u.Correo,u.Clave,r.IdRol,r.Descripcion,u.Estado from Usuario u
+            //join Rol r on r.IdRol = u.IdRol
 
             SqlConnection con = new SqlConnection(Conexion.Cadena);
-            SqlCommand cmd= new SqlCommand(query,con);
+            SqlCommand cmd = new SqlCommand(query.ToString(), con);
             cmd.CommandType = CommandType.Text;
             con.Open();
 
@@ -32,12 +37,64 @@ namespace CapaDatos
                     NombreCompleto = dr["NombreCompleto"].ToString(),
                     Correo = dr["Correo"].ToString(),
                     Clave = dr["Clave"].ToString(),
-                    Estado = Convert.ToBoolean(dr["Estado"])
+                    Estado = Convert.ToBoolean(dr["Estado"]),
+                    oRol = new Rol() { IdRol = Convert.ToInt32(dr["IdRol"]), Descripcion = dr["Descripcion"].ToString() }
 
                 });
             }
 
             return lista;
+        }
+
+        public int AgregarUsuario(Usuario usuario,out string mensaje)
+        {
+            mensaje = string.Empty;
+            int idGenedado = 0;
+            SqlConnection con = new SqlConnection(Conexion.Cadena);
+            SqlCommand cmd = new SqlCommand("sp_AgregarUsuario", con);
+            cmd.Parameters.AddWithValue("Documento", usuario.Documento);
+            cmd.Parameters.AddWithValue("NombreCompleto", usuario.NombreCompleto);
+            cmd.Parameters.AddWithValue("Correo", usuario.Correo);
+            cmd.Parameters.AddWithValue("Clave", usuario.Clave);
+            cmd.Parameters.AddWithValue("IdRol", usuario.oRol.IdRol);
+            cmd.Parameters.AddWithValue("Estado", usuario.Estado);
+            cmd.Parameters.Add("IdGeneradoResultado", SqlDbType.Int).Direction = ParameterDirection.Output;
+            cmd.Parameters.Add("Mensaje", SqlDbType.VarChar, 100).Direction = ParameterDirection.Output;
+            cmd.CommandType = CommandType.StoredProcedure;
+            con.Open();
+
+            cmd.ExecuteNonQuery();
+
+            idGenedado = Convert.ToInt32(cmd.Parameters["IdGeneradoResultado"].Value);
+            mensaje = cmd.Parameters["Mensaje"].Value.ToString();
+
+            return idGenedado;
+        }
+
+        public bool ModificarUsuario(Usuario usuario, out string mensaje)
+        {
+            mensaje = string.Empty;
+            bool Resultado = false;
+            SqlConnection con = new SqlConnection(Conexion.Cadena);
+            SqlCommand cmd = new SqlCommand("sp_ModifcarUsuario", con);
+            cmd.Parameters.AddWithValue("IdUsuario", usuario.IdUsuario);
+            cmd.Parameters.AddWithValue("Documento", usuario.Documento);
+            cmd.Parameters.AddWithValue("NombreCompleto", usuario.NombreCompleto);
+            cmd.Parameters.AddWithValue("Correo", usuario.Correo);
+            cmd.Parameters.AddWithValue("Clave", usuario.Clave);
+            cmd.Parameters.AddWithValue("IdRol", usuario.oRol.IdRol);
+            cmd.Parameters.AddWithValue("Estado", usuario.Estado);
+            cmd.Parameters.Add("Resultado", SqlDbType.Bit).Direction = ParameterDirection.Output;
+            cmd.Parameters.Add("Mensaje", SqlDbType.VarChar, 100).Direction = ParameterDirection.Output;
+            cmd.CommandType = CommandType.StoredProcedure;
+            con.Open();
+
+            cmd.ExecuteNonQuery();
+
+            Resultado = Convert.ToBoolean(cmd.Parameters["Resultado"].Value);
+            mensaje = cmd.Parameters["Mensaje"].Value.ToString();
+
+            return Resultado;
         }
     }
 }

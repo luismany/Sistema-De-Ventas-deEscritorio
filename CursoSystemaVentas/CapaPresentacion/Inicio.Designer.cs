@@ -59,7 +59,7 @@ namespace CapaPresentacion
             this.menuTitulo.Location = new System.Drawing.Point(0, 0);
             this.menuTitulo.Name = "menuTitulo";
             this.menuTitulo.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.menuTitulo.Size = new System.Drawing.Size(928, 48);
+            this.menuTitulo.Size = new System.Drawing.Size(1054, 48);
             this.menuTitulo.TabIndex = 1;
             this.menuTitulo.Text = "menuStrip2";
             // 
@@ -111,7 +111,7 @@ namespace CapaPresentacion
             this.menuacercade});
             this.menu.Location = new System.Drawing.Point(0, 48);
             this.menu.Name = "menu";
-            this.menu.Size = new System.Drawing.Size(928, 73);
+            this.menu.Size = new System.Drawing.Size(1054, 73);
             this.menu.TabIndex = 5;
             this.menu.Text = "menuStrip1";
             // 
@@ -181,7 +181,7 @@ namespace CapaPresentacion
             this.iconMenuItem1.IconColor = System.Drawing.Color.Black;
             this.iconMenuItem1.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.iconMenuItem1.Name = "iconMenuItem1";
-            this.iconMenuItem1.Size = new System.Drawing.Size(180, 22);
+            this.iconMenuItem1.Size = new System.Drawing.Size(129, 22);
             this.iconMenuItem1.Text = "Registrar";
             this.iconMenuItem1.Click += new System.EventHandler(this.iconMenuItem1_Click);
             // 
@@ -191,7 +191,7 @@ namespace CapaPresentacion
             this.submenuverdetalleventa.IconColor = System.Drawing.Color.Black;
             this.submenuverdetalleventa.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.submenuverdetalleventa.Name = "submenuverdetalleventa";
-            this.submenuverdetalleventa.Size = new System.Drawing.Size(180, 22);
+            this.submenuverdetalleventa.Size = new System.Drawing.Size(129, 22);
             this.submenuverdetalleventa.Text = "Ver Detalle";
             this.submenuverdetalleventa.Click += new System.EventHandler(this.submenuverdetalleventa_Click);
             // 
@@ -291,7 +291,7 @@ namespace CapaPresentacion
             this.submenuregistrarventa.Dock = System.Windows.Forms.DockStyle.Fill;
             this.submenuregistrarventa.Location = new System.Drawing.Point(0, 121);
             this.submenuregistrarventa.Name = "submenuregistrarventa";
-            this.submenuregistrarventa.Size = new System.Drawing.Size(928, 451);
+            this.submenuregistrarventa.Size = new System.Drawing.Size(1054, 472);
             this.submenuregistrarventa.TabIndex = 6;
             // 
             // Inicio
@@ -299,7 +299,7 @@ namespace CapaPresentacion
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
-            this.ClientSize = new System.Drawing.Size(928, 572);
+            this.ClientSize = new System.Drawing.Size(1054, 593);
             this.Controls.Add(this.submenuregistrarventa);
             this.Controls.Add(this.menu);
             this.Controls.Add(this.lblUsuario);

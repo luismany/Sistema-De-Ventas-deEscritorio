@@ -29,6 +29,8 @@ namespace CapaPresentacion
         /// </summary>
         private void InitializeComponent()
         {
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             this.txtEliminar = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.txtDocumento = new System.Windows.Forms.TextBox();
@@ -44,10 +46,29 @@ namespace CapaPresentacion
             this.cboRol = new System.Windows.Forms.ComboBox();
             this.cboEstado = new System.Windows.Forms.ComboBox();
             this.label8 = new System.Windows.Forms.Label();
-            this.txtGuardar = new System.Windows.Forms.Button();
-            this.txtModificar = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
+            this.btnGuardar = new System.Windows.Forms.Button();
+            this.btnLimpiar = new System.Windows.Forms.Button();
+            this.btnEliminar = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
+            this.dgvData = new System.Windows.Forms.DataGridView();
+            this.label9 = new System.Windows.Forms.Label();
+            this.txtId = new System.Windows.Forms.TextBox();
+            this.label10 = new System.Windows.Forms.Label();
+            this.cboBuscar = new System.Windows.Forms.ComboBox();
+            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.txtBuscar = new System.Windows.Forms.Button();
+            this.btnLimpiarBuscador = new System.Windows.Forms.Button();
+            this.btnSeleccionar = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.IdUsuario = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Documento = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.NombreCompleto = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Correo = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Clave = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.IdRol = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Rol = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.EstadoValor = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Estado = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvData)).BeginInit();
             this.SuspendLayout();
             // 
             // txtEliminar
@@ -113,6 +134,7 @@ namespace CapaPresentacion
             // 
             this.txtContraseña.Location = new System.Drawing.Point(38, 198);
             this.txtContraseña.Name = "txtContraseña";
+            this.txtContraseña.PasswordChar = '*';
             this.txtContraseña.Size = new System.Drawing.Size(182, 20);
             this.txtContraseña.TabIndex = 4;
             // 
@@ -130,6 +152,7 @@ namespace CapaPresentacion
             // 
             this.txtConfirmarContraseña.Location = new System.Drawing.Point(38, 244);
             this.txtConfirmarContraseña.Name = "txtConfirmarContraseña";
+            this.txtConfirmarContraseña.PasswordChar = '*';
             this.txtConfirmarContraseña.Size = new System.Drawing.Size(182, 20);
             this.txtConfirmarContraseña.TabIndex = 6;
             // 
@@ -181,32 +204,34 @@ namespace CapaPresentacion
             this.label8.TabIndex = 9;
             this.label8.Text = "Estado:";
             // 
-            // txtGuardar
+            // btnGuardar
             // 
-            this.txtGuardar.Location = new System.Drawing.Point(38, 385);
-            this.txtGuardar.Name = "txtGuardar";
-            this.txtGuardar.Size = new System.Drawing.Size(182, 23);
-            this.txtGuardar.TabIndex = 11;
-            this.txtGuardar.Text = "Guardar";
-            this.txtGuardar.UseVisualStyleBackColor = true;
+            this.btnGuardar.Location = new System.Drawing.Point(38, 385);
+            this.btnGuardar.Name = "btnGuardar";
+            this.btnGuardar.Size = new System.Drawing.Size(182, 23);
+            this.btnGuardar.TabIndex = 11;
+            this.btnGuardar.Text = "Guardar";
+            this.btnGuardar.UseVisualStyleBackColor = true;
+            this.btnGuardar.Click += new System.EventHandler(this.txtGuardar_Click);
             // 
-            // txtModificar
+            // btnLimpiar
             // 
-            this.txtModificar.Location = new System.Drawing.Point(38, 414);
-            this.txtModificar.Name = "txtModificar";
-            this.txtModificar.Size = new System.Drawing.Size(182, 23);
-            this.txtModificar.TabIndex = 12;
-            this.txtModificar.Text = "Modificar";
-            this.txtModificar.UseVisualStyleBackColor = true;
+            this.btnLimpiar.Location = new System.Drawing.Point(38, 414);
+            this.btnLimpiar.Name = "btnLimpiar";
+            this.btnLimpiar.Size = new System.Drawing.Size(182, 23);
+            this.btnLimpiar.TabIndex = 12;
+            this.btnLimpiar.Text = "Limpiar";
+            this.btnLimpiar.UseVisualStyleBackColor = true;
+            this.btnLimpiar.Click += new System.EventHandler(this.btnLimpiar_Click);
             // 
-            // button3
+            // btnEliminar
             // 
-            this.button3.Location = new System.Drawing.Point(38, 443);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(182, 23);
-            this.button3.TabIndex = 13;
-            this.button3.Text = "Eliminar";
-            this.button3.UseVisualStyleBackColor = true;
+            this.btnEliminar.Location = new System.Drawing.Point(38, 443);
+            this.btnEliminar.Name = "btnEliminar";
+            this.btnEliminar.Size = new System.Drawing.Size(182, 23);
+            this.btnEliminar.TabIndex = 13;
+            this.btnEliminar.Text = "Eliminar";
+            this.btnEliminar.UseVisualStyleBackColor = true;
             // 
             // label1
             // 
@@ -219,15 +244,196 @@ namespace CapaPresentacion
             this.label1.TabIndex = 14;
             this.label1.Text = "Detalle Usuario";
             // 
+            // dgvData
+            // 
+            this.dgvData.AllowUserToAddRows = false;
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle5.Padding = new System.Windows.Forms.Padding(2);
+            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvData.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
+            this.dgvData.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvData.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.btnSeleccionar,
+            this.IdUsuario,
+            this.Documento,
+            this.NombreCompleto,
+            this.Correo,
+            this.Clave,
+            this.IdRol,
+            this.Rol,
+            this.EstadoValor,
+            this.Estado});
+            this.dgvData.Location = new System.Drawing.Point(274, 110);
+            this.dgvData.MultiSelect = false;
+            this.dgvData.Name = "dgvData";
+            this.dgvData.ReadOnly = true;
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle6.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle6.Padding = new System.Windows.Forms.Padding(2);
+            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvData.RowHeadersDefaultCellStyle = dataGridViewCellStyle6;
+            this.dgvData.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
+            this.dgvData.Size = new System.Drawing.Size(756, 354);
+            this.dgvData.TabIndex = 15;
+            this.dgvData.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvData_CellContentClick);
+            // 
+            // label9
+            // 
+            this.label9.BackColor = System.Drawing.Color.White;
+            this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label9.Location = new System.Drawing.Point(274, 37);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(756, 59);
+            this.label9.TabIndex = 16;
+            this.label9.Text = "Lista de Usuarios";
+            this.label9.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // txtId
+            // 
+            this.txtId.Location = new System.Drawing.Point(190, 37);
+            this.txtId.Name = "txtId";
+            this.txtId.Size = new System.Drawing.Size(30, 20);
+            this.txtId.TabIndex = 17;
+            this.txtId.Text = "0";
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.BackColor = System.Drawing.Color.White;
+            this.label10.Location = new System.Drawing.Point(588, 65);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(62, 13);
+            this.label10.TabIndex = 18;
+            this.label10.Text = "Buscar Por:";
+            // 
+            // cboBuscar
+            // 
+            this.cboBuscar.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cboBuscar.FormattingEnabled = true;
+            this.cboBuscar.Location = new System.Drawing.Point(656, 59);
+            this.cboBuscar.Name = "cboBuscar";
+            this.cboBuscar.Size = new System.Drawing.Size(111, 21);
+            this.cboBuscar.TabIndex = 19;
+            // 
+            // textBox1
+            // 
+            this.textBox1.Location = new System.Drawing.Point(773, 60);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(111, 20);
+            this.textBox1.TabIndex = 20;
+            // 
+            // txtBuscar
+            // 
+            this.txtBuscar.Location = new System.Drawing.Point(890, 59);
+            this.txtBuscar.Name = "txtBuscar";
+            this.txtBuscar.Size = new System.Drawing.Size(51, 23);
+            this.txtBuscar.TabIndex = 21;
+            this.txtBuscar.Text = "Buscar";
+            this.txtBuscar.UseVisualStyleBackColor = true;
+            // 
+            // btnLimpiarBuscador
+            // 
+            this.btnLimpiarBuscador.Location = new System.Drawing.Point(947, 60);
+            this.btnLimpiarBuscador.Name = "btnLimpiarBuscador";
+            this.btnLimpiarBuscador.Size = new System.Drawing.Size(51, 23);
+            this.btnLimpiarBuscador.TabIndex = 22;
+            this.btnLimpiarBuscador.Text = "Limpiar";
+            this.btnLimpiarBuscador.UseVisualStyleBackColor = true;
+            // 
+            // btnSeleccionar
+            // 
+            this.btnSeleccionar.HeaderText = "";
+            this.btnSeleccionar.Name = "btnSeleccionar";
+            this.btnSeleccionar.ReadOnly = true;
+            this.btnSeleccionar.Width = 25;
+            // 
+            // IdUsuario
+            // 
+            this.IdUsuario.HeaderText = "IdUsuario";
+            this.IdUsuario.Name = "IdUsuario";
+            this.IdUsuario.ReadOnly = true;
+            this.IdUsuario.Visible = false;
+            // 
+            // Documento
+            // 
+            this.Documento.HeaderText = "N° Documento";
+            this.Documento.Name = "Documento";
+            this.Documento.ReadOnly = true;
+            this.Documento.Width = 150;
+            // 
+            // NombreCompleto
+            // 
+            this.NombreCompleto.HeaderText = "Nombre Completo";
+            this.NombreCompleto.Name = "NombreCompleto";
+            this.NombreCompleto.ReadOnly = true;
+            this.NombreCompleto.Width = 180;
+            // 
+            // Correo
+            // 
+            this.Correo.HeaderText = "Correo";
+            this.Correo.Name = "Correo";
+            this.Correo.ReadOnly = true;
+            this.Correo.Width = 150;
+            // 
+            // Clave
+            // 
+            this.Clave.HeaderText = "Clave";
+            this.Clave.Name = "Clave";
+            this.Clave.ReadOnly = true;
+            this.Clave.Visible = false;
+            // 
+            // IdRol
+            // 
+            this.IdRol.HeaderText = "IdRol";
+            this.IdRol.Name = "IdRol";
+            this.IdRol.ReadOnly = true;
+            this.IdRol.Visible = false;
+            // 
+            // Rol
+            // 
+            this.Rol.HeaderText = "Rol";
+            this.Rol.Name = "Rol";
+            this.Rol.ReadOnly = true;
+            // 
+            // EstadoValor
+            // 
+            this.EstadoValor.HeaderText = "EstadoValor";
+            this.EstadoValor.Name = "EstadoValor";
+            this.EstadoValor.ReadOnly = true;
+            this.EstadoValor.Visible = false;
+            // 
+            // Estado
+            // 
+            this.Estado.HeaderText = "Estado";
+            this.Estado.Name = "Estado";
+            this.Estado.ReadOnly = true;
+            // 
             // frmUsuario
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 471);
+            this.ClientSize = new System.Drawing.Size(1054, 471);
+            this.Controls.Add(this.btnLimpiarBuscador);
+            this.Controls.Add(this.txtBuscar);
+            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.cboBuscar);
+            this.Controls.Add(this.label10);
+            this.Controls.Add(this.txtId);
+            this.Controls.Add(this.label9);
+            this.Controls.Add(this.dgvData);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.button3);
-            this.Controls.Add(this.txtModificar);
-            this.Controls.Add(this.txtGuardar);
+            this.Controls.Add(this.btnEliminar);
+            this.Controls.Add(this.btnLimpiar);
+            this.Controls.Add(this.btnGuardar);
             this.Controls.Add(this.cboEstado);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.cboRol);
@@ -245,6 +451,8 @@ namespace CapaPresentacion
             this.Controls.Add(this.txtEliminar);
             this.Name = "frmUsuario";
             this.Text = "frmUsuario";
+            this.Load += new System.EventHandler(this.frmUsuario_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.dgvData)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -267,9 +475,27 @@ namespace CapaPresentacion
         private System.Windows.Forms.ComboBox cboRol;
         private System.Windows.Forms.ComboBox cboEstado;
         private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.Button txtGuardar;
-        private System.Windows.Forms.Button txtModificar;
-        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.Button btnGuardar;
+        private System.Windows.Forms.Button btnLimpiar;
+        private System.Windows.Forms.Button btnEliminar;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.DataGridView dgvData;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.TextBox txtId;
+        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.ComboBox cboBuscar;
+        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.Button txtBuscar;
+        private System.Windows.Forms.Button btnLimpiarBuscador;
+        private System.Windows.Forms.DataGridViewButtonColumn btnSeleccionar;
+        private System.Windows.Forms.DataGridViewTextBoxColumn IdUsuario;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Documento;
+        private System.Windows.Forms.DataGridViewTextBoxColumn NombreCompleto;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Correo;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Clave;
+        private System.Windows.Forms.DataGridViewTextBoxColumn IdRol;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Rol;
+        private System.Windows.Forms.DataGridViewTextBoxColumn EstadoValor;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Estado;
     }
 }
