@@ -180,5 +180,39 @@ begin
 			set @Mensaje='Ya existe un Usuario con  el mismo numero de Documento'
 		end
 end
+/////////////////////////////////////////////////////////////////////////////////////
+
+create proc sp_EliminarUsuario(
+@IdUsuario int,
+@Resultado bit output,
+@Mensaje varchar(100) output
+)
+as
+
+begin
+		set @Resultado=0
+		set @Mensaje=''
+		declare @PasoReglas bit =1
+
+		IF exists(select * from Compra where IdUsuario =@IdUsuario)
+		begin
+			set @PasoReglas=0
+			set @Resultado= 0
+			set @Mensaje='Este Usuario esta relacionado con alguna Compra.\n'
+		end
+		IF exists(select * from Venta where IdUsuario =@IdUsuario)
+		begin
+			set @PasoReglas=0
+			set @Resultado= 0
+			set @Mensaje='Este Usuario esta relacionado con alguna Venta.\n'
+		end
+
+		if(@PasoReglas=1)
+		begin
+			
+			delete from Usuario where IdUsuario=@IdUsuario
+			set @Resultado=1
+		end
+end
 
 

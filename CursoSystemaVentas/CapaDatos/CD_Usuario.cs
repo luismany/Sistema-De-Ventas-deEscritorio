@@ -75,8 +75,9 @@ namespace CapaDatos
         {
             mensaje = string.Empty;
             bool Resultado = false;
+
             SqlConnection con = new SqlConnection(Conexion.Cadena);
-            SqlCommand cmd = new SqlCommand("sp_ModifcarUsuario", con);
+            SqlCommand cmd = new SqlCommand("sp_ModificarUsuario", con);
             cmd.Parameters.AddWithValue("IdUsuario", usuario.IdUsuario);
             cmd.Parameters.AddWithValue("Documento", usuario.Documento);
             cmd.Parameters.AddWithValue("NombreCompleto", usuario.NombreCompleto);
@@ -96,5 +97,28 @@ namespace CapaDatos
 
             return Resultado;
         }
+
+        public bool EliminarUsuario(int id,out string mensaje)
+        {
+            bool resultado = false;
+            mensaje = string.Empty;
+
+            SqlConnection con = new SqlConnection(Conexion.Cadena);
+            SqlCommand cmd = new SqlCommand("sp_EliminarUsuario",con);
+            cmd.Parameters.AddWithValue("IdUsuario",id);
+            cmd.Parameters.Add("Resultado", SqlDbType.Bit).Direction = ParameterDirection.Output;
+            cmd.Parameters.Add("Mensaje", SqlDbType.VarChar, 100).Direction = ParameterDirection.Output;
+            cmd.CommandType = CommandType.StoredProcedure;
+            con.Open();
+
+            cmd.ExecuteNonQuery();
+
+            resultado = Convert.ToBoolean(cmd.Parameters["Resultado"].Value);
+            mensaje = cmd.Parameters["Mensaje"].Value.ToString();
+
+            return resultado;
+        }
+
+
     }
 }
