@@ -81,8 +81,9 @@ namespace CapaPresentacion
                 Correo = txtCorreo.Text,
                 Clave = txtContraseña.Text,
                 oRol = new Rol() { IdRol = Convert.ToInt32(((OpcionCombobox)cboRol.SelectedItem).Valor) },
-                Estado = Convert.ToInt32(((OpcionCombobox)cboRol.SelectedItem).Valor) == 1 ? true : false
+                Estado = Convert.ToInt32(((OpcionCombobox)cboEstado.SelectedItem).Valor) == 1 ? true : false
             };
+
             if (oUsuario.IdUsuario == 0)
             {
                 int idGenerado = new CN_Usuario().AgregarUsuario(oUsuario, out mensaje);
@@ -131,7 +132,7 @@ namespace CapaPresentacion
         private void Limpiar()
         {
             txtIndice.Text = "";
-            txtId.Text = "";
+            txtId.Text = "0";
             txtDocumento.Text = "";
             txtNombre.Text = "";
             txtCorreo.Text = "";
@@ -235,6 +236,7 @@ namespace CapaPresentacion
         private void btnLimpiarBuscador_Click(object sender, EventArgs e)
         {
             txtbusqueda.Text = "";
+          
         }
     }
 }

@@ -215,4 +215,78 @@ begin
 		end
 end
 
+////////////////////////////////////////////////////////////////////////////////
 
+create proc sp_AgregarCategoria(
+@Descripcion varchar(50),
+@Estado bit,
+@IdGeneradoResultado int output,
+@Mensaje varchar(100) output
+)
+as
+begin
+		set @IdGeneradoResultado=0
+		set @Mensaje=''
+
+		if not exists(select * from Categoria where Descripcion=@Descripcion)
+		begin
+			insert into Categoria(Descripcion,Estado) values(@Descripcion,@Estado)
+
+			set @IdGeneradoResultado= SCOPE_IDENTITY()
+		end
+		else
+		begin
+			set @Mensaje='No se puede agregar una categoria con la misma descripcion'
+		end
+end
+///////////////////////////////////////////////////////////////////////////////////
+
+create proc sp_ModificarCategoria(
+@IdCategoria int,
+@Descripcion varchar(50),
+@Estado bit,
+@Resultado bit output,
+@Mensaje varchar(100) output
+)
+as
+begin
+		set @Resultado=0
+		set @Mensaje=''
+
+		if not exists(select * from Categoria where Descripcion=@Descripcion and IdCategoria!=@IdCategoria)
+		begin
+			update Categoria set Descripcion=@Descripcion,Estado=@Estado where IdCategoria=@IdCategoria
+
+			set @Resultado= 1
+		end
+		else
+		begin
+			set @Mensaje='ya existe una categoria con la misma descripcion'
+		end
+end
+///////////////////////////////////////////////////////////////////////////////////////////////
+
+create proc sp_EliminarCategoria(
+@IdCategoria int,
+@Resultado bit output,
+@Mensaje varchar(100) output
+)
+as
+begin
+		set @Resultado=0
+		set @Mensaje=''
+
+		if not exists(select * from Producto where IdCategoria=@IdCategoria)
+		begin
+			delete from Categoria where IdCategoria=@IdCategoria
+				set @Resultado=1
+			
+		end
+		else
+			begin
+				set @Mensaje='No se puede eliminar por que la categoria esta relacionada a un producto'	
+			end
+end
+
+
+select *

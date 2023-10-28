@@ -10,7 +10,7 @@ namespace CapaNegocio
 {
     public class CN_Usuario
     {
-        private readonly CD_Usuario objCapaDato = new CD_Usuario();
+        private CD_Usuario objCapaDato = new CD_Usuario();
 
         public List<Usuario> ListarUsuario()
         {
