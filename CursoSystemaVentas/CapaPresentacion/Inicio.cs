@@ -30,6 +30,7 @@ namespace CapaPresentacion
         {
             lblUsuario.Text = usuarioActual.NombreCompleto;
 
+            //para los permisos. mustra los menus a los que el usuario puede acceder segun su rol.
             List<Permiso> listaPermiso = new CN_Permisos().ListaPermisos(usuarioActual.IdUsuario);
 
             foreach (IconMenuItem iconmenu in menu.Items)

@@ -182,6 +182,11 @@ namespace CapaPresentacion
         private void btnLimpiarBuscador_Click(object sender, EventArgs e)
         {
             txtbusqueda.Text = "";
+
+            foreach (DataGridViewRow row in dgvData.Rows)
+            {
+                row.Visible = true;
+            }
         }
     }
 }

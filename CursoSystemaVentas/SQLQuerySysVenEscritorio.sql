@@ -287,6 +287,238 @@ begin
 				set @Mensaje='No se puede eliminar por que la categoria esta relacionada a un producto'	
 			end
 end
+/////////////////////////////////////////////////////////////////////////////////////////////////
 
 
-select *
+create proc sp_AgregarProducto(
+@Codigo varchar(20),
+@Nombre varchar(50),
+@Descripcion varchar(100),
+@IdCategoria int, 
+@Estado bit,
+@IdGeneradoResultado int output,
+@Mensaje varchar(100) output
+)
+as
+begin
+		set @IdGeneradoResultado=0
+		set @Mensaje=''
+
+		if not exists(select * from Producto where Codigo=@Codigo )
+		begin
+			insert into Producto(Codigo,Nombre,Descripcion,IdCategoria,Estado)
+			values(@Codigo,@Nombre,@Descripcion,@IdCategoria,@Estado)
+
+			set @IdGeneradoResultado=SCOPE_IDENTITY()
+		end
+		else
+		begin
+			set @Mensaje='Ya existe un Producto con el mismo codigo'
+		end
+end
+//////////////////////////////////////////////////////////////////////////////////////////////////
+
+create proc sp_ModificarProducto(
+@IdProducto int,
+@Codigo varchar(20),
+@Nombre varchar(50),
+@Descripcion varchar(100),
+@IdCategoria int, 
+@Estado bit,
+@IdGeneradoResultado bit output,
+@Mensaje varchar(100) output
+)
+as
+begin
+		set @IdGeneradoResultado=0
+		set @Mensaje=''
+
+		if not exists(select * from Producto where Codigo=@Codigo and IdProducto!=@IdProducto )
+		begin
+			update Producto set Codigo=@Codigo,Nombre=@Nombre,Descripcion=@Descripcion,
+			IdCategoria=@IdCategoria,Estado=@Estado where IdProducto=@IdProducto
+			
+			set @IdGeneradoResultado=1
+		end
+		else
+		begin
+			set @Mensaje='No se puede agregar un producto con el mismo codigo'
+		end
+end
+///////////////////////////////////////////////////////////////////////////////////////////////////////
+create proc sp_EliminarProducto(
+@IdProducto int,
+@Resultado bit output,
+@Mensaje varchar(100) output
+)
+as
+begin	
+		set @Resultado=0
+		set @Mensaje=''
+		declare @cumpleReglas bit=1
+
+		if exists(select * from DetalleCompra where IdProducto=@IdProducto)
+		begin
+			set @Resultado=0
+			set @Mensaje='No se puede eliminar por que el producto esta relacionado con alguna compra'
+			set @cumpleReglas =0
+				
+		end
+		if exists(select * from DetalleVenta where IdProducto=@IdProducto)
+		begin
+			set @Resultado=0
+			set @Mensaje='No se puede eliminar por que el producto esta relacionado con alguna Venta'
+			set @cumpleReglas =0
+				
+		end
+
+		if(@cumpleReglas=1)
+			begin
+				delete from Producto where IdProducto=@IdProducto
+				set @Resultado=1
+			end
+end
+/////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+create proc sp_AgregarCliente(
+
+@Documento varchar(50),
+@NombreCompleto varchar(100),
+@Correo varchar(100),
+@Telefono varchar(20),
+@Estado bit ,
+@IdGeneradoResultado int output,
+@Mensaje varchar output
+)
+as
+begin
+		set @IdGeneradoResultado=0
+		set @Mensaje=''
+
+		if not exists(select * from Cliente where Documento=@Documento)
+		begin
+			insert into Cliente(Documento,NombreCompleto,Correo,Telefono,Estado)
+			values(@Documento,@NombreCompleto,@Correo,@Telefono,@Estado)
+
+			set @IdGeneradoResultado= SCOPE_IDENTITY()
+		end
+		else
+		begin
+			set @Mensaje='No se puede registrar un cliente con el mismo Documento'
+		end
+end
+///////////////////////////////////////////////////////////////////////////////////////////////
+
+create proc sp_ModificarCliente(
+@IdCliente int,
+@Documento varchar(50),
+@NombreCompleto varchar(100),
+@Correo varchar(100),
+@Telefono varchar(20),
+@Estado bit ,
+@Resultado bit output,
+@Mensaje varchar output
+)
+as
+begin
+		set @Resultado=0
+		set @Mensaje=''
+
+		if not exists(select * from Cliente where Documento=@Documento and IdCliente!=@IdCliente)
+		begin
+			update Cliente set Documento=@Documento,
+			NombreCompleto=@NombreCompleto,Correo=@Correo,Telefono=@Telefono,Estado=@Estado
+			where IdCliente=@IdCliente
+
+			set @Resultado= 1
+		end
+		else
+		begin
+			set @Mensaje='Ya existe un cliente con el mismo Documento '
+		end
+end
+///////////////////////////////////////////////////////////////////////////////////
+
+create proc sp_AgregarProveedor(
+
+@Documento varchar(50),
+@RazonSocial varchar(50),
+@Correo varchar(100),
+@Telefono varchar(20),
+@Estado bit ,
+@IdGeneradoResultado int output,
+@Mensaje varchar output
+)
+as
+begin
+		set @IdGeneradoResultado=0
+		set @Mensaje=''
+
+		if not exists(select * from Proveedor where Documento=@Documento)
+		begin
+			insert into Proveedor(Documento,RazonSocial,Correo,Telefono,Estado)
+			values(@Documento,@RazonSocial,@Correo,@Telefono,@Estado)
+
+			set @IdGeneradoResultado= SCOPE_IDENTITY()
+		end
+		else
+		begin
+			set @Mensaje='No se puede registrar un Proveedor con el mismo Documento'
+		end
+end
+
+/////////////////////////////////////////////////////////////////////////////////////////
+
+create proc sp_ModificarProveedor(
+@IdProveedor int,
+@Documento varchar(50),
+@RazonSocial varchar(50),
+@Correo varchar(100),
+@Telefono varchar(20),
+@Estado bit ,
+@Resultado bit output,
+@Mensaje varchar output
+)
+as
+begin
+		set @Resultado=0
+		set @Mensaje=''
+
+		if not exists(select * from Proveedor where Documento=@Documento and IdProveedor!=@IdProveedor)
+		begin
+			update Proveedor set Documento=@Documento,
+			RazonSocial=@RazonSocial,Correo=@Correo,Telefono=@Telefono,Estado=@Estado
+			where IdProveedor=@IdProveedor
+
+			set @Resultado= 1
+		end
+		else
+		begin
+			set @Mensaje='Ya existe un Proveedor con el mismo Documento '
+		end
+end
+///////////////////////////////////////////////////////////////////////////////////////////////
+create proc sp_EliminarProveedor(
+@IdProveedor int,
+@Resultado bit output,
+@Mensaje varchar(100) output
+)
+as
+begin
+		set @Resultado=0
+		set @Mensaje=''
+
+		if not exists(select * from Compra where IdProveedor=@IdProveedor)
+		begin
+			delete from Proveedor where IdProveedor=@IdProveedor
+				set @Resultado=1
+			
+		end
+		else
+			begin
+				set @Mensaje='No se puede eliminar por que el proveedor esta relacionada a una compra'	
+			end
+end
+
+////////////////////////////////////////////////////////////////////////////////////////////////////

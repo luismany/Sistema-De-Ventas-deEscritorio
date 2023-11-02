@@ -374,6 +374,7 @@ namespace CapaPresentacion
             this.txtId.Size = new System.Drawing.Size(30, 20);
             this.txtId.TabIndex = 17;
             this.txtId.Text = "0";
+            this.txtId.Visible = false;
             // 
             // label10
             // 
@@ -428,6 +429,7 @@ namespace CapaPresentacion
             this.txtIndice.Size = new System.Drawing.Size(30, 20);
             this.txtIndice.TabIndex = 23;
             this.txtIndice.Text = "-1";
+            this.txtIndice.Visible = false;
             // 
             // frmUsuario
             // 

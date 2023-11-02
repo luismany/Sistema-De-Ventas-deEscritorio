@@ -23,9 +23,9 @@ namespace CapaNegocio
             if (string.IsNullOrEmpty(usuario.Documento) || string.IsNullOrWhiteSpace(usuario.Documento))
                 mensaje = "El Campo Documento no puede estar Vacio";
             if (string.IsNullOrEmpty(usuario.NombreCompleto))
-                mensaje = "El Campo Documento no puede estar Vacio";
+                mensaje = "El Campo Nombre Completo no puede estar Vacio";
             if (string.IsNullOrEmpty(usuario.Correo) || string.IsNullOrWhiteSpace(usuario.Correo))
-                mensaje = "El Campo Documento no puede estar Vacio";
+                mensaje = "El Campo Correo no puede estar Vacio";
             if (mensaje == string.Empty)
                 return objCapaDato.AgregarUsuario(usuario, out mensaje);
             else
@@ -39,9 +39,9 @@ namespace CapaNegocio
             if (string.IsNullOrEmpty(usuario.Documento) || string.IsNullOrWhiteSpace(usuario.Documento))
                 mensaje = "El Campo Documento no puede estar Vacio";
             if (string.IsNullOrEmpty(usuario.NombreCompleto))
-                mensaje = "El Campo Documento no puede estar Vacio";
+                mensaje = "El Campo Nombre Completo no puede estar Vacio";
             if (string.IsNullOrEmpty(usuario.Correo) || string.IsNullOrWhiteSpace(usuario.Correo))
-                mensaje = "El Campo Documento no puede estar Vacio";
+                mensaje = "El Campo Correo no puede estar Vacio";
             if (mensaje == string.Empty)
                 return objCapaDato.ModificarUsuario(usuario, out mensaje);
             else
