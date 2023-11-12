@@ -119,6 +119,14 @@ FechaCreacion datetime default getdate()
 )
 go
 
+create table Negocio(
+IdNegocio int primary key,
+Nombre varchar(50),
+RUC varchar(50),
+Direccion varchar(100),
+Logo varbinary(max) null 
+)
+
 
 create proc sp_AgregarUsuario(
 @Documento varchar(50),
