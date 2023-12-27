@@ -42,3 +42,4 @@ C:\Users\Usuario\Desktop\SysEscritorio\CursoSystemaVentas\CapaPresentacion\bin\D
 C:\Users\Usuario\Desktop\SysEscritorio\CursoSystemaVentas\CapaPresentacion\bin\Debug\System.Runtime.CompilerServices.Unsafe.xml
 C:\Users\Usuario\Desktop\SysEscritorio\CursoSystemaVentas\CapaPresentacion\obj\Debug\CapaPresentacion.frmClientes.resources
 C:\Users\Usuario\Desktop\SysEscritorio\CursoSystemaVentas\CapaPresentacion\obj\Debug\CapaPresentacion.frmProveedores.resources
+C:\Users\Usuario\Desktop\SysEscritorio\CursoSystemaVentas\CapaPresentacion\obj\Debug\CapaPresentacion.frmNegocio.resources
