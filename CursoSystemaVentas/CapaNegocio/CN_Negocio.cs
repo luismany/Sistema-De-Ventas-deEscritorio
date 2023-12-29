@@ -31,5 +31,15 @@ namespace CapaNegocio
             else
                 return objCapaDato.GuardarDatos(oNegocio,out mensaje);
         }
+
+        public byte[] ObtenerLogo(out bool obtenido)
+        {
+            return objCapaDato.ObtenerLogo(out obtenido);
+        }
+
+        public bool ActualizarLogo(byte[] imagen, out string mensaje)
+        {
+            return objCapaDato.ActualizarLogo(imagen,out mensaje);
+        }
     }
 }

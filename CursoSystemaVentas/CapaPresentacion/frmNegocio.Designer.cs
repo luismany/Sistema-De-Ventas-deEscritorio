@@ -153,13 +153,14 @@ namespace CapaPresentacion
             this.btnSubir.IconColor = System.Drawing.Color.Black;
             this.btnSubir.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.btnSubir.IconSize = 20;
-            this.btnSubir.Location = new System.Drawing.Point(21, 168);
+            this.btnSubir.Location = new System.Drawing.Point(16, 168);
             this.btnSubir.Name = "btnSubir";
-            this.btnSubir.Size = new System.Drawing.Size(100, 23);
+            this.btnSubir.Size = new System.Drawing.Size(116, 23);
             this.btnSubir.TabIndex = 2;
             this.btnSubir.Text = "Subir";
             this.btnSubir.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnSubir.UseVisualStyleBackColor = true;
+            this.btnSubir.Click += new System.EventHandler(this.btnSubir_Click);
             // 
             // label2
             // 
@@ -177,6 +178,7 @@ namespace CapaPresentacion
             this.picLogo.Location = new System.Drawing.Point(16, 51);
             this.picLogo.Name = "picLogo";
             this.picLogo.Size = new System.Drawing.Size(116, 111);
+            this.picLogo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.picLogo.TabIndex = 0;
             this.picLogo.TabStop = false;
             // 

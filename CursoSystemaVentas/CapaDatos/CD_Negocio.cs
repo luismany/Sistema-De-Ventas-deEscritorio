@@ -63,5 +63,55 @@ namespace CapaDatos
             return respuesta;
         }
 
+        public byte[] ObtenerLogo(out bool obtenido)
+        {
+            obtenido = true;
+            byte[] logoByte = new byte[0];
+
+            try
+            {
+
+                string consulta = "select Logo from Negocio where IdNegocio=1";
+
+                SqlConnection con = new SqlConnection(Conexion.Cadena);
+                SqlCommand cmd = new SqlCommand(consulta, con);
+                cmd.CommandType = CommandType.Text;
+
+                SqlDataReader dr = cmd.ExecuteReader();
+                while (dr.Read())
+                {
+                    logoByte = (byte[])dr["Logo"];
+                }
+            }
+            catch {
+
+                obtenido = false;
+                logoByte = new byte[0];
+            }
+
+            return logoByte;
+        }
+
+        public bool ActualizarLogo(byte[] imagen, out string mensaje)
+        {
+            mensaje = string.Empty;
+            bool respuesta = true;
+
+            string consulta = "update Negocio set Logo=@Logo where IdNegocio=1";
+
+            SqlConnection con = new SqlConnection(Conexion.Cadena);
+            SqlCommand cmd = new SqlCommand(consulta,con);
+            cmd.Parameters.AddWithValue("@Logo",imagen);
+            cmd.CommandType = CommandType.Text;
+            con.Open();
+
+            if (cmd.ExecuteNonQuery() < 1)
+            {
+                mensaje = "No se pudo actualizar el logo";
+                respuesta = false;
+            }
+            return respuesta;
+               
+        }
     }
 }
