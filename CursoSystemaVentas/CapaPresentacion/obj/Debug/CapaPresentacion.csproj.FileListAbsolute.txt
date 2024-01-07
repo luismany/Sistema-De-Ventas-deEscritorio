@@ -43,3 +43,6 @@ C:\Users\Usuario\Desktop\SysEscritorio\CursoSystemaVentas\CapaPresentacion\bin\D
 C:\Users\Usuario\Desktop\SysEscritorio\CursoSystemaVentas\CapaPresentacion\obj\Debug\CapaPresentacion.frmClientes.resources
 C:\Users\Usuario\Desktop\SysEscritorio\CursoSystemaVentas\CapaPresentacion\obj\Debug\CapaPresentacion.frmProveedores.resources
 C:\Users\Usuario\Desktop\SysEscritorio\CursoSystemaVentas\CapaPresentacion\obj\Debug\CapaPresentacion.frmNegocio.resources
+C:\Users\Usuario\Desktop\SysEscritorio\CursoSystemaVentas\CapaPresentacion\obj\Debug\CapaPresentacion.frmCompras.resources
+C:\Users\Usuario\Desktop\SysEscritorio\CursoSystemaVentas\CapaPresentacion\obj\Debug\CapaPresentacion.Modales.md_Proveedor.resources
+C:\Users\Usuario\Desktop\SysEscritorio\CursoSystemaVentas\CapaPresentacion\obj\Debug\CapaPresentacion.Modales.md_Producto.resources
