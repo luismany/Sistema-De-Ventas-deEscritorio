@@ -64,10 +64,10 @@ namespace CapaPresentacion
             this.Cantidad = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.SubTotal = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.btnEliminar = new System.Windows.Forms.DataGridViewButtonColumn();
-            this.btnAgregar = new FontAwesome.Sharp.IconButton();
             this.txtTotal = new System.Windows.Forms.TextBox();
             this.label11 = new System.Windows.Forms.Label();
-            this.iconButton1 = new FontAwesome.Sharp.IconButton();
+            this.txtRegistrar = new FontAwesome.Sharp.IconButton();
+            this.btnAgregar = new FontAwesome.Sharp.IconButton();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -154,7 +154,7 @@ namespace CapaPresentacion
             this.groupBox2.Controls.Add(this.label5);
             this.groupBox2.Location = new System.Drawing.Point(372, 89);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(364, 67);
+            this.groupBox2.Size = new System.Drawing.Size(371, 67);
             this.groupBox2.TabIndex = 20;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Informacion de Proveedor";
@@ -267,6 +267,7 @@ namespace CapaPresentacion
             this.txtPrecioVenta.Name = "txtPrecioVenta";
             this.txtPrecioVenta.Size = new System.Drawing.Size(76, 20);
             this.txtPrecioVenta.TabIndex = 30;
+            this.txtPrecioVenta.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtPrecioVenta_KeyPress);
             // 
             // txtPrecioCompra
             // 
@@ -274,6 +275,7 @@ namespace CapaPresentacion
             this.txtPrecioCompra.Name = "txtPrecioCompra";
             this.txtPrecioCompra.Size = new System.Drawing.Size(76, 20);
             this.txtPrecioCompra.TabIndex = 29;
+            this.txtPrecioCompra.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtPrecioCompra_KeyPress);
             // 
             // label9
             // 
@@ -345,6 +347,9 @@ namespace CapaPresentacion
             // 
             // dataGridView1
             // 
+            this.dataGridView1.AllowUserToAddRows = false;
+            this.dataGridView1.AllowUserToDeleteRows = false;
+            this.dataGridView1.BackgroundColor = System.Drawing.Color.White;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.IdProducto,
@@ -356,66 +361,62 @@ namespace CapaPresentacion
             this.btnEliminar});
             this.dataGridView1.Location = new System.Drawing.Point(91, 260);
             this.dataGridView1.Name = "dataGridView1";
+            this.dataGridView1.ReadOnly = true;
             this.dataGridView1.Size = new System.Drawing.Size(566, 224);
             this.dataGridView1.TabIndex = 22;
+            this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
+            this.dataGridView1.CellPainting += new System.Windows.Forms.DataGridViewCellPaintingEventHandler(this.dataGridView1_CellPainting);
             // 
             // IdProducto
             // 
             this.IdProducto.HeaderText = "IdProducto";
             this.IdProducto.Name = "IdProducto";
+            this.IdProducto.ReadOnly = true;
             this.IdProducto.Visible = false;
             // 
             // Producto
             // 
             this.Producto.HeaderText = "Producto";
             this.Producto.Name = "Producto";
+            this.Producto.ReadOnly = true;
             // 
             // PrecioCompra
             // 
             this.PrecioCompra.HeaderText = "Precio Compra";
             this.PrecioCompra.Name = "PrecioCompra";
+            this.PrecioCompra.ReadOnly = true;
             // 
             // PrecioVenta
             // 
             this.PrecioVenta.HeaderText = "PrecioVenta";
             this.PrecioVenta.Name = "PrecioVenta";
+            this.PrecioVenta.ReadOnly = true;
             this.PrecioVenta.Visible = false;
             // 
             // Cantidad
             // 
             this.Cantidad.HeaderText = "Cantidad";
             this.Cantidad.Name = "Cantidad";
+            this.Cantidad.ReadOnly = true;
             // 
             // SubTotal
             // 
             this.SubTotal.HeaderText = "Sub Total";
             this.SubTotal.Name = "SubTotal";
+            this.SubTotal.ReadOnly = true;
             // 
             // btnEliminar
             // 
             this.btnEliminar.HeaderText = "";
             this.btnEliminar.Name = "btnEliminar";
+            this.btnEliminar.ReadOnly = true;
             this.btnEliminar.Width = 30;
-            // 
-            // btnAgregar
-            // 
-            this.btnAgregar.IconChar = FontAwesome.Sharp.IconChar.PlusCircle;
-            this.btnAgregar.IconColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
-            this.btnAgregar.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.btnAgregar.Location = new System.Drawing.Point(663, 172);
-            this.btnAgregar.Name = "btnAgregar";
-            this.btnAgregar.Size = new System.Drawing.Size(73, 78);
-            this.btnAgregar.TabIndex = 23;
-            this.btnAgregar.Text = "Agregar";
-            this.btnAgregar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-            this.btnAgregar.UseVisualStyleBackColor = true;
-            this.btnAgregar.Click += new System.EventHandler(this.btnAgregar_Click);
             // 
             // txtTotal
             // 
             this.txtTotal.Location = new System.Drawing.Point(666, 419);
             this.txtTotal.Name = "txtTotal";
-            this.txtTotal.Size = new System.Drawing.Size(71, 20);
+            this.txtTotal.Size = new System.Drawing.Size(77, 20);
             this.txtTotal.TabIndex = 31;
             this.txtTotal.Text = "0";
             // 
@@ -429,26 +430,41 @@ namespace CapaPresentacion
             this.label11.TabIndex = 30;
             this.label11.Text = "Total a Pagar:";
             // 
-            // iconButton1
+            // txtRegistrar
             // 
-            this.iconButton1.IconChar = FontAwesome.Sharp.IconChar.Tag;
-            this.iconButton1.IconColor = System.Drawing.Color.DeepSkyBlue;
-            this.iconButton1.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.iconButton1.IconSize = 22;
-            this.iconButton1.Location = new System.Drawing.Point(663, 447);
-            this.iconButton1.Name = "iconButton1";
-            this.iconButton1.Size = new System.Drawing.Size(74, 37);
-            this.iconButton1.TabIndex = 32;
-            this.iconButton1.Text = "Agregar";
-            this.iconButton1.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.iconButton1.UseVisualStyleBackColor = true;
+            this.txtRegistrar.IconChar = FontAwesome.Sharp.IconChar.Tag;
+            this.txtRegistrar.IconColor = System.Drawing.Color.DeepSkyBlue;
+            this.txtRegistrar.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.txtRegistrar.IconSize = 22;
+            this.txtRegistrar.Location = new System.Drawing.Point(663, 447);
+            this.txtRegistrar.Name = "txtRegistrar";
+            this.txtRegistrar.Size = new System.Drawing.Size(80, 37);
+            this.txtRegistrar.TabIndex = 32;
+            this.txtRegistrar.Text = "Registrar";
+            this.txtRegistrar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.txtRegistrar.UseVisualStyleBackColor = true;
+            this.txtRegistrar.Click += new System.EventHandler(this.txtRegistrar_Click);
+            // 
+            // btnAgregar
+            // 
+            this.btnAgregar.IconChar = FontAwesome.Sharp.IconChar.PlusCircle;
+            this.btnAgregar.IconColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
+            this.btnAgregar.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.btnAgregar.Location = new System.Drawing.Point(663, 172);
+            this.btnAgregar.Name = "btnAgregar";
+            this.btnAgregar.Size = new System.Drawing.Size(80, 78);
+            this.btnAgregar.TabIndex = 23;
+            this.btnAgregar.Text = "Agregar";
+            this.btnAgregar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.btnAgregar.UseVisualStyleBackColor = true;
+            this.btnAgregar.Click += new System.EventHandler(this.btnAgregar_Click);
             // 
             // frmCompras
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(820, 566);
-            this.Controls.Add(this.iconButton1);
+            this.Controls.Add(this.txtRegistrar);
             this.Controls.Add(this.txtTotal);
             this.Controls.Add(this.label11);
             this.Controls.Add(this.btnAgregar);
@@ -514,6 +530,6 @@ namespace CapaPresentacion
         private FontAwesome.Sharp.IconButton btnAgregar;
         private System.Windows.Forms.TextBox txtTotal;
         private System.Windows.Forms.Label label11;
-        private FontAwesome.Sharp.IconButton iconButton1;
+        private FontAwesome.Sharp.IconButton txtRegistrar;
     }
 }
