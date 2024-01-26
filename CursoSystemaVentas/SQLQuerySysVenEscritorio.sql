@@ -590,4 +590,23 @@ begin
 
 end
 
+//////////////////////////////////////////////////////////////////////////////
 
+select c.IdCompra,
+u.NombreCompleto,
+p.Documento,p.RazonSocial,
+c.TipoDocumento,c.NumeroDocumento,c.MontoTotal,CONVERT(char(10), c.FechaCreacion,103)[FechaRegistro]
+from Compra c
+join Proveedor p on p.IdProveedor=c.IdProveedor
+join Usuario u on u.IdUsuario=c.IdUsuario
+where c.NumeroDocumento='00001'
+
+
+select p.Nombre,
+dc.PrecioCompra,dc.Cantidad,dc.Total
+ from DetalleCompra dc
+join Compra c on c.IdCompra=dc.IdCompra
+join Producto p on p.IdProducto=dc.IdProducto
+where dc.IdCompra=1
+
+////////////////////////////////////////////////////////////////////////////////
