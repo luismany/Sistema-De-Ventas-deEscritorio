@@ -308,6 +308,7 @@ namespace CapaPresentacion
             this.btnDescargarPdf.TabIndex = 55;
             this.btnDescargarPdf.Text = "Descargar en PDF";
             this.btnDescargarPdf.UseVisualStyleBackColor = true;
+            this.btnDescargarPdf.Click += new System.EventHandler(this.btnDescargarPdf_Click);
             // 
             // frmDetalleCompra
             // 
