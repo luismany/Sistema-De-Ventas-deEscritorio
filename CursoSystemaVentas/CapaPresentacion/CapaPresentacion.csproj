@@ -214,6 +214,12 @@
     <Compile Include="Login.Designer.cs">
       <DependentUpon>Login.cs</DependentUpon>
     </Compile>
+    <Compile Include="Modales\md_Cliente.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Modales\md_Cliente.Designer.cs">
+      <DependentUpon>md_Cliente.cs</DependentUpon>
+    </Compile>
     <Compile Include="Modales\md_Producto.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -253,11 +259,17 @@
     <EmbeddedResource Include="frmUsuario.resx">
       <DependentUpon>frmUsuario.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="frmVentas.resx">
+      <DependentUpon>frmVentas.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Inicio.resx">
       <DependentUpon>Inicio.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Login.resx">
       <DependentUpon>Login.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Modales\md_Cliente.resx">
+      <DependentUpon>md_Cliente.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Modales\md_Producto.resx">
       <DependentUpon>md_Producto.cs</DependentUpon>

@@ -39,7 +39,6 @@ namespace CapaPresentacion
             txtIdProducto.Text = "0";
             txtIdProveedor.Text = "0";
         }
-
         private void btnBuscar_Click(object sender, EventArgs e)
         {
             var modal = new md_Proveedor();
@@ -54,7 +53,6 @@ namespace CapaPresentacion
             else
                 txtDocumentoProveedor.Select();
         }
-
         private void btnBuscarProducto_Click(object sender, EventArgs e)
         {
             var modal = new md_Producto();
@@ -70,7 +68,6 @@ namespace CapaPresentacion
             else
                 txtCodProducto.Select();
         }
-
         private void txtCodProducto_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyData == Keys.Enter)
@@ -92,7 +89,6 @@ namespace CapaPresentacion
                 }
             }
         }
-
         private void btnAgregar_Click(object sender, EventArgs e)
         {
             decimal precioCompra = 0;
@@ -145,10 +141,8 @@ namespace CapaPresentacion
                 Limpiar();
                 txtCodProducto.Select();
                 
-            }
-            
+            }          
         }
-
         private void Limpiar()
         {
             txtIdProducto.Text = "0";
@@ -159,7 +153,6 @@ namespace CapaPresentacion
             txtPrecioVenta.Text = "";
             numericUpDownCantidad.Value = 1;
         }
-
         private void CalcularTotal()
         {
             decimal total = 0;
@@ -190,7 +183,6 @@ namespace CapaPresentacion
                 e.Handled = true;
             }
         }
-
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
             if (dataGridView1.Columns[e.ColumnIndex].Name == "btnEliminar")
@@ -234,7 +226,6 @@ namespace CapaPresentacion
                 }
             }
         }
-
         private void txtPrecioVenta_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (Char.IsDigit(e.KeyChar))
@@ -260,7 +251,6 @@ namespace CapaPresentacion
                 }
             }
         }
-
         private void txtRegistrar_Click(object sender, EventArgs e)
         {
             if(Convert.ToInt32(txtIdProveedor.Text) == 0)

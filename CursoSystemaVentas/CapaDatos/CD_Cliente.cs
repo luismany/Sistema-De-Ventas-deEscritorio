@@ -38,6 +38,9 @@ namespace CapaDatos
             }
 
             return lista;
+
+
+               
         }
 
         public int AgregarCliente(Cliente cliente,out string mensaje)
