@@ -608,5 +608,65 @@ dc.PrecioCompra,dc.Cantidad,dc.Total
 join Compra c on c.IdCompra=dc.IdCompra
 join Producto p on p.IdProducto=dc.IdProducto
 where dc.IdCompra=1
-
+go
 ////////////////////////////////////////////////////////////////////////////////
+
+create type[dbo].[EDetalle_Venta] as Table
+(
+[IdProducto] int ,
+[PrecioVenta] decimal(10,2) null,
+[Cantidad] int null,
+[SubTotal] decimal(10,2) null
+)
+go
+
+create proc sp_RegistrarVenta(
+@IdUsuario int ,
+@TipoDocumento varchar(100),
+@NumeroDocumento varchar(20),
+@DocumentoCliente varchar(20),
+@NombreCliente varchar(100),
+@MontoPago decimal(10,2),
+@MontoCambio decimal(10,2),
+@MontoTotal decimal(10,2),
+@EDetalle_Venta [EDetalle_Venta] readonly,
+@Resultado bit output,
+@Mensaje varchar(500) output 
+)
+as
+begin
+	
+	begin try
+			declare @IdVenta int= 0
+			set @Resultado=1
+			set @Mensaje=''
+
+			begin transaction Registro
+					
+					insert into Venta(IdUsuario,TipoDocumento,NumeroDocumento,DocumentoCliente,NombreCliente,
+								MontoPago,MontoCambio, MontoTotal)
+							values(@IdUsuario,@TipoDocumento,@NumeroDocumento,@DocumentoCliente,@NombreCliente,
+								@MontoPago,@MontoCambio, @MontoTotal)
+
+					set @IdVenta= SCOPE_IDENTITY()
+
+					insert into DetalleVenta(IdVenta,IdProducto,PrecioVenta,Cantidad,SubTotal)
+							select @IdVenta,IdProducto,PrecioVenta,Cantidad,SubTotal from @EDetalle_Venta
+
+					update p set p.Stock= p.Stock - dv.Cantidad
+					from Producto p
+					join @EDetalle_Venta dv
+					on dv.IdProducto = p.IdProducto
+
+
+			commit transaction Registro
+
+	end try
+
+	begin catch
+			set @Resultado=0
+			set @Mensaje=ERROR_MESSAGE()
+			rollback transaction Registro
+	end catch
+
+end

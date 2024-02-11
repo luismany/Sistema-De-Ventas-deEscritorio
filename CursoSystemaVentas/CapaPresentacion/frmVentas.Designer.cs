@@ -487,6 +487,7 @@ namespace CapaPresentacion
             this.btnCrearVenta.Text = "Crear Venta";
             this.btnCrearVenta.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnCrearVenta.UseVisualStyleBackColor = true;
+            this.btnCrearVenta.Click += new System.EventHandler(this.btnCrearVenta_Click);
             // 
             // frmVentas
             // 
