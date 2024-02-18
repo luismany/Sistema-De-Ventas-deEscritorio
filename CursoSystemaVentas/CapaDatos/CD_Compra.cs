@@ -111,7 +111,6 @@ namespace CapaDatos
             cmd.Parameters.AddWithValue("@idCompra", idCompra);
             cmd.CommandType = CommandType.Text;
             con.Open();
-
             SqlDataReader dr = cmd.ExecuteReader();
 
             while (dr.Read())
@@ -128,6 +127,7 @@ namespace CapaDatos
             }
 
             return listaDC;
+
         }
     }
 }

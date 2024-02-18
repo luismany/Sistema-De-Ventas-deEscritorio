@@ -51,7 +51,7 @@ namespace CapaPresentacion
             this.label1.AutoSize = true;
             this.label1.BackColor = System.Drawing.Color.White;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(36, 20);
+            this.label1.Location = new System.Drawing.Point(172, 21);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(164, 25);
             this.label1.TabIndex = 97;
@@ -60,9 +60,9 @@ namespace CapaPresentacion
             // btnGuardar
             // 
             this.btnGuardar.BackColor = System.Drawing.Color.White;
-            this.btnGuardar.Location = new System.Drawing.Point(0, -6);
+            this.btnGuardar.Location = new System.Drawing.Point(30, 9);
             this.btnGuardar.Name = "btnGuardar";
-            this.btnGuardar.Size = new System.Drawing.Size(456, 361);
+            this.btnGuardar.Size = new System.Drawing.Size(475, 330);
             this.btnGuardar.TabIndex = 83;
             // 
             // group
@@ -78,9 +78,9 @@ namespace CapaPresentacion
             this.group.Controls.Add(this.btnSubir);
             this.group.Controls.Add(this.label2);
             this.group.Controls.Add(this.picLogo);
-            this.group.Location = new System.Drawing.Point(12, 59);
+            this.group.Location = new System.Drawing.Point(61, 68);
             this.group.Name = "group";
-            this.group.Size = new System.Drawing.Size(405, 232);
+            this.group.Size = new System.Drawing.Size(405, 242);
             this.group.TabIndex = 98;
             this.group.TabStop = false;
             // 
@@ -186,7 +186,7 @@ namespace CapaPresentacion
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(613, 313);
+            this.ClientSize = new System.Drawing.Size(541, 373);
             this.Controls.Add(this.group);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.btnGuardar);

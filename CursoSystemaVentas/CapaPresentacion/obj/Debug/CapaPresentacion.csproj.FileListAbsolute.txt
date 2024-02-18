@@ -53,3 +53,4 @@ C:\Users\Usuario\Desktop\SysEscritorio\CursoSystemaVentas\CapaPresentacion\bin\D
 C:\Users\Usuario\Desktop\SysEscritorio\CursoSystemaVentas\CapaPresentacion\bin\Debug\itextsharp.xml
 C:\Users\Usuario\Desktop\SysEscritorio\CursoSystemaVentas\CapaPresentacion\obj\Debug\CapaPresentacion.frmVentas.resources
 C:\Users\Usuario\Desktop\SysEscritorio\CursoSystemaVentas\CapaPresentacion\obj\Debug\CapaPresentacion.Modales.md_Cliente.resources
+C:\Users\Usuario\Desktop\SysEscritorio\CursoSystemaVentas\CapaPresentacion\obj\Debug\CapaPresentacion.frmDetalleVenta.resources

@@ -670,3 +670,23 @@ begin
 	end catch
 
 end
+///////////////////////////////////////////////////////////////////////////////////////////////////
+
+select v.IdVenta,
+u.NombreCompleto,
+v.DocumentoCliente,v.NombreCliente,
+v.TipoDocumento, v.NumeroDocumento,v.MontoPago,v.MontoCambio,v.MontoTotal,CONVERT(char(10), v.FechaCreacion,103)[FechaRegistro]
+from Venta v
+join Usuario u on u.IdUsuario=v.IdUsuario
+where v.NumeroDocumento='00001' 
+
+select p.Nombre,
+dv.PrecioVenta,dv.Cantidad,dv.SubTotal
+from DetalleVenta dv
+join Venta v on v.IdVenta=dv.IdVenta
+join Producto p on p.IdProducto=dv.IdProducto
+where dv.IdVenta=1
+
+
+ select * from Cliente
+ select * from Venta

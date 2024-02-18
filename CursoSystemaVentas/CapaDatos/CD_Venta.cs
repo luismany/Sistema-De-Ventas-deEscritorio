@@ -92,5 +92,84 @@ namespace CapaDatos
 
             return Respuesta;
         }
+
+        public Venta ObtenerVenta(string numeroDocumento)
+        {
+            Venta oVenta = new Venta();
+
+            StringBuilder query = new StringBuilder();
+            query.AppendLine("select v.IdVenta,");
+            query.AppendLine("u.NombreCompleto,");
+            query.AppendLine("v.DocumentoCliente, v.NombreCliente,");
+            query.AppendLine("v.TipoDocumento, v.NumeroDocumento,v.MontoPago,v.MontoCambio,v.MontoTotal,CONVERT(char(10), v.FechaCreacion, 103)[FechaRegistro]");
+            query.AppendLine("from Venta v");
+            query.AppendLine("join Usuario u on u.IdUsuario = v.IdUsuario");
+            query.AppendLine("join Cliente c on c.Documento = v.DocumentoCliente");
+            query.AppendLine("where v.NumeroDocumento = @numeroDocumento");
+
+            SqlConnection con = new SqlConnection(Conexion.Cadena);
+            SqlCommand cmd = new SqlCommand(query.ToString(),con);
+            cmd.Parameters.AddWithValue("@numeroDocumento",numeroDocumento);
+            cmd.CommandType = CommandType.Text;
+            con.Open();
+
+            SqlDataReader dr = cmd.ExecuteReader();
+
+            while (dr.Read())
+            {
+                oVenta = new Venta()
+                {
+                    IdVenta = Convert.ToInt32(dr["IdVenta"]),
+                    oUsuario = new Usuario(){ NombreCompleto = dr["NombreCompleto"].ToString() },
+                    DocumentoCliente = dr["DocumentoCliente"].ToString(),
+                    NombreCliente = dr["NombreCliente"].ToString(),
+                    TipoDocumento=dr["TipoDocumento"].ToString(),
+                    NumeroDocumento=dr["NumeroDocumento"].ToString(),
+                    MontoPago=Convert.ToDecimal(dr["MontoPago"]),
+                    MontoCambio=Convert.ToDecimal(dr["MontoCambio"]),
+                    MontoTotal=Convert.ToDecimal(dr["MontoTotal"]),
+                    FechaCreacion=dr["FechaRegistro"].ToString()
+                };
+            }
+
+            return oVenta;
+        }
+
+        public List<DetalleVenta> ObtenerDetalleVenta(int idVenta)
+        {
+            List<DetalleVenta> listaDV = new List<DetalleVenta>();
+
+            StringBuilder query = new StringBuilder();
+            query.AppendLine("select p.Nombre,");
+            query.AppendLine("dv.PrecioVenta,dv.Cantidad,dv.SubTotal");
+            query.AppendLine("from DetalleVenta dv");
+            query.AppendLine("join Venta v on v.IdVenta = dv.IdVenta");
+            query.AppendLine("join Producto p on p.IdProducto = dv.IdProducto");
+            query.AppendLine("where dv.IdVenta = @idVenta");
+
+            SqlConnection con = new SqlConnection(Conexion.Cadena);
+            SqlCommand cmd = new SqlCommand(query.ToString(), con);
+            cmd.Parameters.AddWithValue("@idVenta", idVenta);
+            cmd.CommandType = CommandType.Text;
+            con.Open();
+
+            SqlDataReader dr = cmd.ExecuteReader();
+
+            while (dr.Read())
+            {
+                listaDV.Add(new DetalleVenta()
+                {
+
+                    oProducto = new Producto() { Nombre = dr["Nombre"].ToString() },
+                    PrecioVenta = Convert.ToDecimal(dr["PrecioVenta"]),
+                    Cantidad = Convert.ToInt32(dr["Cantidad"]),
+                    SubTotal = Convert.ToDecimal(dr["SubTotal"])
+
+                });
+            }
+
+            return listaDV;
+
+        }
     }
 }

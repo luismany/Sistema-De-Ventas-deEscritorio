@@ -79,9 +79,9 @@ namespace CapaPresentacion
             // 
             this.txtcontent.BackColor = System.Drawing.Color.White;
             this.txtcontent.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtcontent.Location = new System.Drawing.Point(63, 34);
+            this.txtcontent.Location = new System.Drawing.Point(54, 22);
             this.txtcontent.Name = "txtcontent";
-            this.txtcontent.Size = new System.Drawing.Size(694, 473);
+            this.txtcontent.Size = new System.Drawing.Size(730, 511);
             this.txtcontent.TabIndex = 17;
             this.txtcontent.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
