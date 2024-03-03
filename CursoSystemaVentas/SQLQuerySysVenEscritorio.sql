@@ -591,7 +591,7 @@ begin
 end
 
 //////////////////////////////////////////////////////////////////////////////
-
+/*para detalle de Venta*/
 select c.IdCompra,
 u.NombreCompleto,
 p.Documento,p.RazonSocial,
@@ -671,7 +671,7 @@ begin
 
 end
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-
+/*para detalle de Venta*/
 select v.IdVenta,
 u.NombreCompleto,
 v.DocumentoCliente,v.NombreCliente,
@@ -687,6 +687,78 @@ join Venta v on v.IdVenta=dv.IdVenta
 join Producto p on p.IdProducto=dv.IdProducto
 where dv.IdVenta=1
 
+///////////////////////////////////////////////////////////////////////////////////////////////////////
+go
 
- select * from Cliente
- select * from Venta
+select 
+CONVERT(char(10),c.FechaCreacion,103)[FechaRegistro],c.TipoDocumento,c.NumeroDocumento,c.MontoTotal,
+u.NombreCompleto[UsuarioRegistro],
+pr.Documento[DocumentoProveedor],pr.RazonSocial,
+p.Codigo[CodigoProducto],p.Nombre[NombreProducto],
+ca.Descripcion[Categoria],dc.PrecioCompra,dc.PrecioVenta,dc.Cantidad,dc.Total[SubTotal]
+from Compra c
+join Usuario u on u.IdUsuario=c.IdUsuario
+join Proveedor pr on pr.IdProveedor=c.IdProveedor
+join DetalleCompra dc on dc.IdCompra=c.IdCompra
+join Producto p on p.IdProducto= dc.IdProducto
+join Categoria ca on ca.IdCategoria=p.IdCategoria
+where CONVERT(date,c.FechaCreacion) between '' and ''
+and pr.IdProveedor=1
+/////////////////////////////////////////////////////////////////////////////////////////////////////
+go
+
+create Proc sp_ReporteCompra(
+@FechaInicio varchar(10),
+@FechaFin varchar(10),
+@IdProveedor int
+)
+as
+begin
+
+		set DateFormat dmy;
+
+		select 
+		CONVERT(char(10),c.FechaCreacion,103)[FechaRegistro],c.TipoDocumento,c.NumeroDocumento,c.MontoTotal,
+		u.NombreCompleto[UsuarioRegistro],
+		pr.Documento[DocumentoProveedor],pr.RazonSocial,
+		p.Codigo[CodigoProducto],p.Nombre[NombreProducto],
+		ca.Descripcion[Categoria],dc.PrecioCompra,dc.PrecioVenta,dc.Cantidad,dc.Total[SubTotal]
+		from Compra c
+		join Usuario u on u.IdUsuario=c.IdUsuario
+		join Proveedor pr on pr.IdProveedor=c.IdProveedor
+		join DetalleCompra dc on dc.IdCompra=c.IdCompra
+		join Producto p on p.IdProducto= dc.IdProducto
+		join Categoria ca on ca.IdCategoria=p.IdCategoria
+		where CONVERT(date,c.FechaCreacion) between @FechaInicio and @FechaFin
+		and pr.IdProveedor=iif(@IdProveedor=0, pr.IdProveedor, @IdProveedor)
+
+end
+/////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+create proc sp_ReporteVenta(
+@FechaInicio varchar(10),
+@FechaFin varchar(10)
+)
+as
+begin
+		set DateFormat dmy;
+
+		select 
+		CONVERT(char(10),v.FechaCreacion,103)[FechaRegistro],v.TipoDocumento,v.NumeroDocumento,v.MontoTotal,
+		u.NombreCompleto[UsuarioRegistro],
+		v.DocumentoCliente,v.NombreCliente,
+		p.Codigo[CodigoProducto],p.Nombre[NombreProducto],
+		c.Descripcion[Categoria],
+		dv.PrecioVenta,dv.Cantidad,dv.SubTotal
+
+		from Venta v
+		join Usuario u on u.IdUsuario=v.IdUsuario
+		join DetalleVenta dv on dv.IdVenta=v.IdVenta
+		join Producto p on p.IdProducto=dv.IdProducto
+		join Categoria c on c.IdCategoria= p.IdCategoria
+		where CONVERT(date,v.FechaCreacion) between @FechaInicio and @FechaFin
+end
+	
+
+	

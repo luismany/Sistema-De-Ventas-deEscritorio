@@ -38,6 +38,7 @@ namespace CapaPresentacion
             this.menumantenedor = new FontAwesome.Sharp.IconMenuItem();
             this.submenucategoria = new System.Windows.Forms.ToolStripMenuItem();
             this.submenuproducto = new System.Windows.Forms.ToolStripMenuItem();
+            this.negocioToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuventas = new FontAwesome.Sharp.IconMenuItem();
             this.iconMenuItem1 = new FontAwesome.Sharp.IconMenuItem();
             this.submenuverdetalleventa = new FontAwesome.Sharp.IconMenuItem();
@@ -47,9 +48,10 @@ namespace CapaPresentacion
             this.menuclientes = new FontAwesome.Sharp.IconMenuItem();
             this.menuproveedores = new FontAwesome.Sharp.IconMenuItem();
             this.menureportes = new FontAwesome.Sharp.IconMenuItem();
+            this.subMenureporteCompras = new System.Windows.Forms.ToolStripMenuItem();
+            this.subMenureporteVentas = new System.Windows.Forms.ToolStripMenuItem();
             this.menuacercade = new FontAwesome.Sharp.IconMenuItem();
             this.submenuregistrarventa = new System.Windows.Forms.Panel();
-            this.negocioToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menu.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -150,16 +152,23 @@ namespace CapaPresentacion
             // submenucategoria
             // 
             this.submenucategoria.Name = "submenucategoria";
-            this.submenucategoria.Size = new System.Drawing.Size(180, 22);
+            this.submenucategoria.Size = new System.Drawing.Size(125, 22);
             this.submenucategoria.Text = "Categoria";
             this.submenucategoria.Click += new System.EventHandler(this.submenucategoria_Click);
             // 
             // submenuproducto
             // 
             this.submenuproducto.Name = "submenuproducto";
-            this.submenuproducto.Size = new System.Drawing.Size(180, 22);
+            this.submenuproducto.Size = new System.Drawing.Size(125, 22);
             this.submenuproducto.Text = "Producto";
             this.submenuproducto.Click += new System.EventHandler(this.submenuproducto_Click);
+            // 
+            // negocioToolStripMenuItem
+            // 
+            this.negocioToolStripMenuItem.Name = "negocioToolStripMenuItem";
+            this.negocioToolStripMenuItem.Size = new System.Drawing.Size(125, 22);
+            this.negocioToolStripMenuItem.Text = "Negocio";
+            this.negocioToolStripMenuItem.Click += new System.EventHandler(this.negocioToolStripMenuItem_Click);
             // 
             // menuventas
             // 
@@ -264,6 +273,9 @@ namespace CapaPresentacion
             // menureportes
             // 
             this.menureportes.AutoSize = false;
+            this.menureportes.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.subMenureporteCompras,
+            this.subMenureporteVentas});
             this.menureportes.IconChar = FontAwesome.Sharp.IconChar.BarChart;
             this.menureportes.IconColor = System.Drawing.Color.Black;
             this.menureportes.IconFont = FontAwesome.Sharp.IconFont.Auto;
@@ -273,7 +285,20 @@ namespace CapaPresentacion
             this.menureportes.Size = new System.Drawing.Size(80, 69);
             this.menureportes.Text = "Reportes";
             this.menureportes.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-            this.menureportes.Click += new System.EventHandler(this.menureportes_Click);
+            // 
+            // subMenureporteCompras
+            // 
+            this.subMenureporteCompras.Name = "subMenureporteCompras";
+            this.subMenureporteCompras.Size = new System.Drawing.Size(180, 22);
+            this.subMenureporteCompras.Text = "Reporte Compras";
+            this.subMenureporteCompras.Click += new System.EventHandler(this.subMenureporteCompras_Click);
+            // 
+            // subMenureporteVentas
+            // 
+            this.subMenureporteVentas.Name = "subMenureporteVentas";
+            this.subMenureporteVentas.Size = new System.Drawing.Size(180, 22);
+            this.subMenureporteVentas.Text = "Reporte Ventas";
+            this.subMenureporteVentas.Click += new System.EventHandler(this.subMenureporteVentas_Click);
             // 
             // menuacercade
             // 
@@ -295,13 +320,6 @@ namespace CapaPresentacion
             this.submenuregistrarventa.Name = "submenuregistrarventa";
             this.submenuregistrarventa.Size = new System.Drawing.Size(1129, 544);
             this.submenuregistrarventa.TabIndex = 6;
-            // 
-            // negocioToolStripMenuItem
-            // 
-            this.negocioToolStripMenuItem.Name = "negocioToolStripMenuItem";
-            this.negocioToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.negocioToolStripMenuItem.Text = "Negocio";
-            this.negocioToolStripMenuItem.Click += new System.EventHandler(this.negocioToolStripMenuItem_Click);
             // 
             // Inicio
             // 
@@ -348,6 +366,8 @@ namespace CapaPresentacion
         private FontAwesome.Sharp.IconMenuItem submenuregistrarcompra;
         private FontAwesome.Sharp.IconMenuItem submenuverdetallecompra;
         private System.Windows.Forms.ToolStripMenuItem negocioToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem subMenureporteCompras;
+        private System.Windows.Forms.ToolStripMenuItem subMenureporteVentas;
     }
 }
 
