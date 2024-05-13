@@ -38,6 +38,7 @@ namespace CapaPresentacion.Modales
             this.cboBuscar = new System.Windows.Forms.ComboBox();
             this.label10 = new System.Windows.Forms.Label();
             this.dgvData = new System.Windows.Forms.DataGridView();
+            this.IdCliente = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Documento = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.NombreCompleto = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dgvData)).BeginInit();
@@ -115,6 +116,7 @@ namespace CapaPresentacion.Modales
             this.dgvData.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.dgvData.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvData.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.IdCliente,
             this.Documento,
             this.NombreCompleto});
             this.dgvData.Location = new System.Drawing.Point(12, 97);
@@ -134,6 +136,13 @@ namespace CapaPresentacion.Modales
             this.dgvData.Size = new System.Drawing.Size(425, 309);
             this.dgvData.TabIndex = 114;
             this.dgvData.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvData_CellDoubleClick);
+            // 
+            // IdCliente
+            // 
+            this.IdCliente.HeaderText = "IdCliente";
+            this.IdCliente.Name = "IdCliente";
+            this.IdCliente.ReadOnly = true;
+            this.IdCliente.Visible = false;
             // 
             // Documento
             // 
@@ -180,6 +189,7 @@ namespace CapaPresentacion.Modales
         private System.Windows.Forms.ComboBox cboBuscar;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.DataGridView dgvData;
+        private System.Windows.Forms.DataGridViewTextBoxColumn IdCliente;
         private System.Windows.Forms.DataGridViewTextBoxColumn Documento;
         private System.Windows.Forms.DataGridViewTextBoxColumn NombreCompleto;
     }

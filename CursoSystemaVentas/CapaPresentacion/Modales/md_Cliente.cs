@@ -40,7 +40,7 @@ namespace CapaPresentacion.Modales
             {
                 if (item.Estado)
                 
-                dgvData.Rows.Add(new object[] {item.Documento,item.NombreCompleto});
+                dgvData.Rows.Add(new object[] {item.IdCliente ,item.Documento,item.NombreCompleto});
             }
         }
 
